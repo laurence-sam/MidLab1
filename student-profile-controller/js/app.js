@@ -17,6 +17,8 @@ const themeBtn = document.getElementById('themeBtn');
 const resetBtn = document.getElementById('resetBtn');
 const formMessage = document.getElementById('formMessage');
 
+const firstHeading = document.querySelector('h1');
+
 const initialData = {
   name: 'Maria Santos',
   program: 'BS Information Technology',
@@ -45,6 +47,7 @@ function setStatus(status) {
 }
 
 function updateProfile() {
+  if (!formMessage || !profileName || !profileProgram || !profileYear) return;
   formMessage.textContent = '';
   const nameValue = nameInput.value;
 
@@ -60,19 +63,24 @@ function updateProfile() {
 }
 
 function toggleDetails() {
-  detailsPanel.classList.toggle('hidden');
+  if (detailsPanel) {
+    detailsPanel.classList.toggle('hidden');
+  }
 }
 
 function toggleTheme() {
-  document.body.classList.toggle('dark-theme');
+  if (document.body) {
+    document.body.classList.toggle('dark-theme');
+  }
 }
 
 function resetProfile() {
+  if (!profileName || !profileProgram || !profileYear || !studentIdDisplay || !formMessage || !detailsPanel || !document.body) return;
   profileName.textContent = initialData.name;
   profileProgram.textContent = initialData.program;
   profileYear.textContent = initialData.year;
   setStatus(initialData.status);
-  studentIdDisplay.textContent = `Student ID: ${initialData.studentId}`;
+  studentIdDisplay.textContent = `Student ID: ${profileCard.dataset.studentId}`;
 
   nameInput.value = '';
   programSelect.value = initialData.program;
@@ -90,9 +98,10 @@ themeBtn.addEventListener('click', toggleTheme);
 resetBtn.addEventListener('click', resetProfile);
 
 document.addEventListener('DOMContentLoaded', function () {
+  if (!profileName || !profileProgram || !profileYear || !studentIdDisplay) return;
   profileName.textContent = initialData.name;
   profileProgram.textContent = initialData.program;
   profileYear.textContent = initialData.year;
-  setStatus(initialData.status);
-  studentIdDisplay.textContent = `Student ID: ${initialData.studentId}`;
+  setStatus(profileCard.dataset.status || 'active');
+  studentIdDisplay.textContent = `Student ID: ${profileCard.dataset.studentId}`;
 });
