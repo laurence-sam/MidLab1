@@ -23,8 +23,7 @@ const initialData = {
   name: 'Maria Santos',
   program: 'BS Information Technology',
   year: '3rd Year',
-  status: 'active',
-  studentId: '2026-001'
+  status: 'active'
 };
 
 function isValidStudentName(name) {
@@ -75,7 +74,7 @@ function toggleTheme() {
 }
 
 function resetProfile() {
-  if (!profileName || !profileProgram || !profileYear || !studentIdDisplay || !formMessage || !detailsPanel || !document.body) return;
+  if (!profileName || !profileProgram || !profileYear || !studentIdDisplay || !formMessage || !detailsPanel || !document.body || !profileCard) return;
   profileName.textContent = initialData.name;
   profileProgram.textContent = initialData.program;
   profileYear.textContent = initialData.year;
@@ -98,7 +97,7 @@ themeBtn.addEventListener('click', toggleTheme);
 resetBtn.addEventListener('click', resetProfile);
 
 document.addEventListener('DOMContentLoaded', function () {
-  if (!profileName || !profileProgram || !profileYear || !studentIdDisplay) return;
+  if (!profileName || !profileProgram || !profileYear || !studentIdDisplay || !profileCard) return;
   profileName.textContent = initialData.name;
   profileProgram.textContent = initialData.program;
   profileYear.textContent = initialData.year;
